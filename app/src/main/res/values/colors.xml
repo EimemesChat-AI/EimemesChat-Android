@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg">#F9F9F8</color>
+    <color name="bg_alt">#FFFFFF</color>
+    <color name="sidebar_bg">#FFFFFF</color>
+    <color name="border">#E5E5E3</color>
+    <color name="text1">#0D0D0D</color>
+    <color name="text2">#404040</color>
+    <color name="text3">#9B9B9B</color>
+    <color name="bubble_user">#EFEFEE</color>
+    <color name="code_bg">#F6F6F4</color>
+    <color name="accent">#0a84ff</color>
+    <color name="accent_dim">#1E0a84ff</color>
+    <color name="send_bg">#0D0D0D</color>
+    <color name="send_fg">#FFFFFF</color>
+    <color name="input_bg">#FFFFFF</color>
+    <color name="error">#e05252</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gradient_start">#5e9cff</color>
+    <color name="gradient_end">#c96eff</color>
+</resources>
