@@ -1,0 +1,57 @@
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+}
+
+android {
+    compileSdk 33
+    namespace 'com.eimemes.chat'
+
+    defaultConfig {
+        applicationId "com.eimemes.chat"
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                    'prism4j.bundler.languages': 'javascript,python,java,kotlin,cpp,c,css,markup,json,bash,sql,typescript,go,swift,php,ruby,rust'
+                ]
+            }
+        }
+    }
+
+    buildTypes {
+        release { minifyEnabled false }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    // AndroidX
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.drawerlayout:drawerlayout:1.2.0'
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+    implementation 'com.google.android.material:material:1.9.0'
+
+    // Firebase
+    implementation 'com.google.firebase:firebase-auth:22.1.2'
+    implementation 'com.google.firebase:firebase-firestore:24.8.1'
+    implementation 'com.google.android.gms:play-services-auth:20.7.0'
+
+    // Networking
+    implementation 'com.squareup.okhttp3:okhttp:4.11.0'
+
+    // Markdown rendering (same role as marked.js)
+    implementation 'io.noties.markwon:core:4.6.2'
+    implementation 'io.noties.markwon:ext-strikethrough:4.6.2'
+    implementation 'io.noties.markwon:ext-tables:4.6.2'
+    implementation 'io.noties.markwon:syntax-highlight:4.6.2'
+    implementation 'io.noties:prism4j:2.0.0'
+    annotationProcessor 'io.noties:prism4j-bundler:2.0.0'
+}
