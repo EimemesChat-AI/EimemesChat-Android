@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg">
+
+    <!-- ══════════════ MAIN CONTENT ══════════════ -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- ─── CHAT VIEW ─── -->
+        <LinearLayout
+            android:id="@+id/chatView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/bg"
+            android:visibility="visible">
+
+            <!-- Topbar -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:background="@color/bg">
+
+                <ImageButton android:id="@+id/btnMenu"
+                    android:layout_width="42dp" android:layout_height="42dp"
+                    android:src="@drawable/ic_menu"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:contentDescription="Menu"/>
+
+                <TextView android:id="@+id/tvTopbarTitle"
+                    android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="✦ EimemesChat"
+                    android:textSize="16sp" android:textStyle="bold"
+                    android:textColor="@color/accent"
+                    android:gravity="center"/>
+
+                <ImageButton android:id="@+id/btnTopbarNew"
+                    android:layout_width="42dp" android:layout_height="42dp"
+                    android:src="@drawable/ic_add"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:contentDescription="New chat"/>
+
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/border"/>
+
+            <!-- Welcome screen (hidden once chat starts) -->
+            <LinearLayout
+                android:id="@+id/welcomeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="24dp"
+                android:visibility="visible">
+
+                <TextView android:id="@+id/tvWelcomeTitle"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/welcome_title"
+                    android:textSize="32sp" android:textStyle="bold"
+                    android:textColor="@color/accent"
+                    android:layout_marginBottom="8dp"/>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/welcome_sub"
+                    android:textSize="16sp" android:textColor="@color/text3"
+                    android:layout_marginBottom="32dp"/>
+
+                <!-- Suggestion chips — 2 rows of 2 -->
+                <LinearLayout android:id="@+id/chipsLayout"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:gravity="center"
+                    android:visibility="visible">
+
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:gravity="center"
+                        android:layout_marginBottom="10dp">
+
+                        <TextView android:id="@+id/chip1"
+                            android:layout_width="wrap_content" android:layout_height="40dp"
+                            android:gravity="center"
+                            android:text="@string/chip1"
+                            android:textSize="14sp" android:textColor="@color/text2"
+                            android:paddingStart="16dp" android:paddingEnd="16dp"
+                            android:background="@drawable/chip_bg"
+                            android:layout_marginEnd="8dp"/>
+
+                        <TextView android:id="@+id/chip2"
+                            android:layout_width="wrap_content" android:layout_height="40dp"
+                            android:gravity="center"
+                            android:text="@string/chip2"
+                            android:textSize="14sp" android:textColor="@color/text2"
+                            android:paddingStart="16dp" android:paddingEnd="16dp"
+                            android:background="@drawable/chip_bg"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:gravity="center">
+
+                        <TextView android:id="@+id/chip3"
+                            android:layout_width="wrap_content" android:layout_height="40dp"
+                            android:gravity="center"
+                            android:text="@string/chip3"
+                            android:textSize="14sp" android:textColor="@color/text2"
+                            android:paddingStart="16dp" android:paddingEnd="16dp"
+                            android:background="@drawable/chip_bg"
+                            android:layout_marginEnd="8dp"/>
+
+                        <TextView android:id="@+id/chip4"
+                            android:layout_width="wrap_content" android:layout_height="40dp"
+                            android:gravity="center"
+                            android:text="@string/chip4"
+                            android:textSize="14sp" android:textColor="@color/text2"
+                            android:paddingStart="16dp" android:paddingEnd="16dp"
+                            android:background="@drawable/chip_bg"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Chat messages RecyclerView (hidden on welcome) -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvChat"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:paddingTop="8dp" android:paddingBottom="8dp"
+                android:clipToPadding="false"
+                android:overScrollMode="always"
+                android:scrollbars="none"
+                android:visibility="gone"/>
+
+            <!-- Input bar -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/bg"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="14dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="bottom">
+
+                    <EditText android:id="@+id/etInput"
+                        android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/hint_message"
+                        android:textColor="@color/text1"
+                        android:textColorHint="@color/text3"
+                        android:textSize="15sp"
+                        android:minHeight="46dp" android:maxLines="5"
+                        android:paddingStart="16dp" android:paddingEnd="16dp"
+                        android:paddingTop="12dp" android:paddingBottom="12dp"
+                        android:background="@drawable/input_bg"
+                        android:inputType="textMultiLine|textCapSentences"
+                        android:layout_marginEnd="8dp"/>
+
+                    <ImageButton android:id="@+id/btnSend"
+                        android:layout_width="46dp" android:layout_height="46dp"
+                        android:src="@drawable/ic_send"
+                        android:background="@drawable/btn_send"
+                        android:enabled="false" android:alpha="0.3"
+                        android:contentDescription="Send"/>
+
+                    <ImageButton android:id="@+id/btnStop"
+                        android:layout_width="46dp" android:layout_height="46dp"
+                        android:src="@drawable/ic_stop"
+                        android:background="@drawable/btn_stop"
+                        android:visibility="gone"
+                        android:contentDescription="Stop"/>
+
+                </LinearLayout>
+
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="EimemesChat can make mistakes. Verify important info."
+                    android:textSize="11sp" android:textColor="@color/text3"
+                    android:gravity="center"
+                    android:paddingTop="6dp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ─── SETTINGS VIEW ─── -->
+        <LinearLayout
+            android:id="@+id/settingsView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/bg"
+            android:visibility="gone">
+
+            <!-- Settings header -->
+            <LinearLayout
+                android:layout_width="match_parent" android:layout_height="56dp"
+                android:orientation="horizontal" android:gravity="center_vertical"
+                android:paddingStart="4dp" android:paddingEnd="16dp"
+                android:background="@color/bg">
+
+                <ImageButton android:id="@+id/btnSettingsBack"
+                    android:layout_width="42dp" android:layout_height="42dp"
+                    android:src="@drawable/ic_back"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:contentDescription="Back"/>
+
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Settings"
+                    android:textSize="18sp" android:textStyle="bold"
+                    android:textColor="@color/text1"
+                    android:paddingStart="4dp"/>
+
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/border"/>
+
+            <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:padding="20dp">
+
+                    <!-- Profile card -->
+                    <LinearLayout android:id="@+id/profileCard"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:gravity="center_vertical"
+                        android:padding="16dp"
+                        android:background="@drawable/settings_row_bg"
+                        android:layout_marginBottom="24dp">
+
+                        <TextView android:id="@+id/tvAvatar"
+                            android:layout_width="44dp" android:layout_height="44dp"
+                            android:gravity="center"
+                            android:textSize="18sp" android:textStyle="bold" android:textColor="@color/white"
+                            android:background="@drawable/settings_icon_bg"
+                            android:layout_marginEnd="14dp"/>
+
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:orientation="vertical">
+                            <TextView android:id="@+id/tvProfileName"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:textSize="15sp" android:textStyle="bold" android:textColor="@color/text1"/>
+                            <TextView android:id="@+id/tvProfileEmail"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:textSize="12sp" android:textColor="@color/text3"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- APPEARANCE section -->
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:text="APPEARANCE" android:textSize="11sp" android:textStyle="bold"
+                        android:textColor="@color/text3" android:letterSpacing="0.07"
+                        android:paddingStart="4dp" android:paddingBottom="8dp"/>
+
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="vertical" android:background="@drawable/settings_row_bg"
+                        android:layout_marginBottom="24dp">
+
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:orientation="horizontal" android:gravity="center_vertical"
+                            android:paddingStart="16dp" android:paddingEnd="16dp"
+                            android:paddingTop="12dp" android:paddingBottom="12dp">
+
+                            <LinearLayout android:layout_width="34dp" android:layout_height="34dp"
+                                android:gravity="center"
+                                android:background="@drawable/settings_icon_bg"
+                                android:layout_marginEnd="14dp">
+                                <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@drawable/ic_moon"/>
+                            </LinearLayout>
+
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:text="Dark Mode" android:textSize="15sp" android:textStyle="bold" android:textColor="@color/text1"/>
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:text="Override system preference" android:textSize="12sp" android:textColor="@color/text3"/>
+                            </LinearLayout>
+
+                            <!-- Toggle switch -->
+                            <FrameLayout android:id="@+id/toggleDarkMode"
+                                android:layout_width="46dp" android:layout_height="26dp">
+                                <View android:id="@+id/toggleBg"
+                                    android:layout_width="match_parent" android:layout_height="match_parent"
+                                    android:background="@drawable/toggle_bg"/>
+                                <View android:id="@+id/toggleKnob"
+                                    android:layout_width="20dp" android:layout_height="20dp"
+                                    android:layout_gravity="start|center_vertical"
+                                    android:layout_marginStart="3dp"
+                                    android:background="@drawable/toggle_knob"/>
+                            </FrameLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- ACCOUNT section -->
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:text="ACCOUNT" android:textSize="11sp" android:textStyle="bold"
+                        android:textColor="@color/text3" android:letterSpacing="0.07"
+                        android:paddingStart="4dp" android:paddingBottom="8dp"/>
+
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="vertical" android:background="@drawable/settings_row_bg"
+                        android:layout_marginBottom="24dp">
+
+                        <LinearLayout android:id="@+id/rowSignOut"
+                            android:layout_width="match_parent" android:layout_height="56dp"
+                            android:orientation="horizontal" android:gravity="center_vertical"
+                            android:paddingStart="16dp" android:paddingEnd="16dp"
+                            android:background="?android:attr/selectableItemBackground">
+                            <LinearLayout android:layout_width="34dp" android:layout_height="34dp" android:gravity="center" android:background="@drawable/settings_icon_bg" android:layout_marginEnd="14dp">
+                                <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@drawable/ic_signout"/>
+                            </LinearLayout>
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sign out" android:textSize="15sp" android:textStyle="bold" android:textColor="@color/text1"/>
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="End your session" android:textSize="12sp" android:textColor="@color/text3"/>
+                            </LinearLayout>
+                            <ImageView android:layout_width="14dp" android:layout_height="14dp" android:src="@drawable/ic_chevron"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- DATA section -->
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:text="DATA" android:textSize="11sp" android:textStyle="bold"
+                        android:textColor="@color/text3" android:letterSpacing="0.07"
+                        android:paddingStart="4dp" android:paddingBottom="8dp"/>
+
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="vertical" android:background="@drawable/settings_row_bg"
+                        android:layout_marginBottom="24dp">
+
+                        <LinearLayout android:id="@+id/rowClearChats"
+                            android:layout_width="match_parent" android:layout_height="56dp"
+                            android:orientation="horizontal" android:gravity="center_vertical"
+                            android:paddingStart="16dp" android:paddingEnd="16dp"
+                            android:background="?android:attr/selectableItemBackground">
+                            <LinearLayout android:layout_width="34dp" android:layout_height="34dp" android:gravity="center" android:background="@drawable/settings_icon_bg_red" android:layout_marginEnd="14dp">
+                                <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@drawable/ic_trash"/>
+                            </LinearLayout>
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Clear all chats" android:textSize="15sp" android:textStyle="bold" android:textColor="@color/error"/>
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Permanently erase conversation history" android:textSize="12sp" android:textColor="@color/text3"/>
+                            </LinearLayout>
+                            <ImageView android:layout_width="14dp" android:layout_height="14dp" android:src="@drawable/ic_chevron"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- ABOUT section -->
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:text="ABOUT" android:textSize="11sp" android:textStyle="bold"
+                        android:textColor="@color/text3" android:letterSpacing="0.07"
+                        android:paddingStart="4dp" android:paddingBottom="8dp"/>
+
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="vertical" android:background="@drawable/settings_row_bg"
+                        android:layout_marginBottom="24dp">
+
+                        <LinearLayout android:id="@+id/rowPrivacy"
+                            android:layout_width="match_parent" android:layout_height="56dp"
+                            android:orientation="horizontal" android:gravity="center_vertical"
+                            android:paddingStart="16dp" android:paddingEnd="16dp"
+                            android:background="?android:attr/selectableItemBackground">
+                            <LinearLayout android:layout_width="34dp" android:layout_height="34dp" android:gravity="center" android:background="@drawable/settings_icon_bg" android:layout_marginEnd="14dp">
+                                <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@drawable/ic_privacy"/>
+                            </LinearLayout>
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Privacy Policy" android:textSize="15sp" android:textStyle="bold" android:textColor="@color/text1"/>
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="How we handle your data" android:textSize="12sp" android:textColor="@color/text3"/>
+                            </LinearLayout>
+                            <ImageView android:layout_width="14dp" android:layout_height="14dp" android:src="@drawable/ic_chevron"/>
+                        </LinearLayout>
+
+                        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/border" android:layout_marginStart="64dp"/>
+
+                        <LinearLayout android:id="@+id/rowHelp"
+                            android:layout_width="match_parent" android:layout_height="56dp"
+                            android:orientation="horizontal" android:gravity="center_vertical"
+                            android:paddingStart="16dp" android:paddingEnd="16dp"
+                            android:background="?android:attr/selectableItemBackground">
+                            <LinearLayout android:layout_width="34dp" android:layout_height="34dp" android:gravity="center" android:background="@drawable/settings_icon_bg" android:layout_marginEnd="14dp">
+                                <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@drawable/ic_help"/>
+                            </LinearLayout>
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Help &amp; Support" android:textSize="15sp" android:textStyle="bold" android:textColor="@color/text1"/>
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="FAQ and contact" android:textSize="12sp" android:textColor="@color/text3"/>
+                            </LinearLayout>
+                            <ImageView android:layout_width="14dp" android:layout_height="14dp" android:src="@drawable/ic_chevron"/>
+                        </LinearLayout>
+
+                        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/border" android:layout_marginStart="64dp"/>
+
+                        <LinearLayout android:id="@+id/rowAbout"
+                            android:layout_width="match_parent" android:layout_height="56dp"
+                            android:orientation="horizontal" android:gravity="center_vertical"
+                            android:paddingStart="16dp" android:paddingEnd="16dp"
+                            android:background="?android:attr/selectableItemBackground">
+                            <LinearLayout android:layout_width="34dp" android:layout_height="34dp" android:gravity="center" android:background="@drawable/settings_icon_bg" android:layout_marginEnd="14dp">
+                                <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@drawable/ic_info"/>
+                            </LinearLayout>
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="About" android:textSize="15sp" android:textStyle="bold" android:textColor="@color/text1"/>
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="EimemesChat AI · v1.0" android:textSize="12sp" android:textColor="@color/text3"/>
+                            </LinearLayout>
+                            <ImageView android:layout_width="14dp" android:layout_height="14dp" android:src="@drawable/ic_chevron"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:text="EimemesChat AI · v1.0"
+                        android:textSize="12sp" android:textColor="@color/text3"
+                        android:gravity="center" android:paddingTop="8dp" android:paddingBottom="16dp"/>
+
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <!-- ══════════════ SIDEBAR DRAWER ══════════════ -->
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:orientation="vertical"
+        android:background="@color/sidebar_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical"
+            android:paddingStart="16dp" android:paddingEnd="8dp"
+            android:paddingTop="52dp" android:paddingBottom="14dp">
+
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="✦ EimemesChat AI"
+                android:textSize="18sp" android:textStyle="bold" android:textColor="@color/accent"/>
+
+            <ImageButton android:id="@+id/btnCloseSidebar"
+                android:layout_width="36dp" android:layout_height="36dp"
+                android:src="@drawable/ic_close"
+                android:background="?android:attr/selectableItemBackground"
+                android:contentDescription="Close"/>
+
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/border"/>
+
+        <LinearLayout android:id="@+id/btnSidebarNewChat"
+            android:layout_width="match_parent" android:layout_height="44dp"
+            android:orientation="horizontal" android:gravity="center_vertical"
+            android:paddingStart="14dp" android:paddingEnd="14dp"
+            android:background="@drawable/new_chat_btn_bg"
+            android:layout_marginStart="12dp" android:layout_marginEnd="12dp" android:layout_marginTop="12dp">
+
+            <ImageView android:layout_width="16dp" android:layout_height="16dp"
+                android:src="@drawable/ic_add" android:layout_marginEnd="8dp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="New chat" android:textSize="15sp" android:textColor="@color/text2"/>
+
+        </LinearLayout>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Recents"
+            android:textSize="11sp" android:textStyle="bold" android:textColor="@color/text3"
+            android:letterSpacing="0.06"
+            android:paddingStart="20dp" android:paddingEnd="20dp"
+            android:paddingTop="16dp" android:paddingBottom="6dp"/>
+
+        <!-- Empty state -->
+        <TextView android:id="@+id/tvNoConversations"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/no_conversations"
+            android:textSize="13sp" android:textColor="@color/text3"
+            android:paddingStart="20dp" android:paddingTop="4dp"
+            android:visibility="gone"/>
+
+        <androidx.recyclerview.widget.RecyclerView android:id="@+id/rvConversations"
+            android:layout_width="match_parent" android:layout_height="0dp"
+            android:layout_weight="1"
+            android:overScrollMode="always"
+            android:scrollbars="none"/>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/border"/>
+
+        <LinearLayout android:id="@+id/btnSettings"
+            android:layout_width="match_parent" android:layout_height="50dp"
+            android:orientation="horizontal" android:gravity="center_vertical"
+            android:paddingStart="16dp" android:paddingEnd="16dp"
+            android:background="?android:attr/selectableItemBackground">
+
+            <ImageView android:layout_width="16dp" android:layout_height="16dp"
+                android:src="@drawable/ic_settings" android:layout_marginEnd="10dp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Settings" android:textSize="15sp" android:textColor="@color/text2"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingStart="28dp"
+        android:paddingEnd="28dp"
+        android:paddingTop="80dp"
+        android:paddingBottom="48dp">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome_title"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/accent"
+            android:layout_marginBottom="6dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign in to continue"
+            android:textSize="15sp"
+            android:textColor="@color/text3"
+            android:layout_marginBottom="36dp"/>
+
+        <EditText
+            android:id="@+id/emailInput"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:hint="Email address"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/text1"
+            android:textColorHint="@color/text3"
+            android:textSize="15sp"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:background="@drawable/input_bg"
+            android:layout_marginBottom="10dp"/>
+
+        <EditText
+            android:id="@+id/passwordInput"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textColor="@color/text1"
+            android:textColorHint="@color/text3"
+            android:textSize="15sp"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:background="@drawable/input_bg"
+            android:layout_marginBottom="18dp"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="Sign in"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/send_fg"
+            android:background="@drawable/btn_primary"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:id="@+id/btnSignup"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="Create account"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/send_fg"
+            android:background="@drawable/btn_primary"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/btnGoogle"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="Continue with Google"
+            android:textSize="15sp"
+            android:textColor="#333333"
+            android:background="@drawable/btn_google"
+            android:layout_marginBottom="28dp"/>
+
+        <TextView
+            android:id="@+id/tvToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don\'t have an account? Sign up"
+            android:textSize="14sp"
+            android:textColor="@color/accent"
+            android:padding="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="By continuing, you agree to our Terms &amp; Privacy Policy"
+            android:textSize="11sp"
+            android:textColor="@color/text3"
+            android:gravity="center"
+            android:paddingTop="16dp"/>
+
+    </LinearLayout>
+</ScrollView>
