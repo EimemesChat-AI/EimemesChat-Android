@@ -52,14 +52,14 @@ public class StreamingClient {
                     return;
                 }
 
-                ResponseBody body = resp.body();
-                if (body == null) {
+                ResponseBody responseBody = resp.body();
+                if (responseBody == null) {
                     main.post(() -> cb.onError("Empty response from server."));
                     return;
                 }
 
                 BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(body.byteStream()));
+                    new InputStreamReader(responseBody.byteStream()));
                 StringBuilder full  = new StringBuilder();
                 String        line;
                 String        model = "";
@@ -89,7 +89,7 @@ public class StreamingClient {
                 String  fm = model;
                 boolean fd = disc;
                 String  ft = full.toString();
-                body.close();
+                responseBody.close();
                 main.post(() -> cb.onDone(ft, fm, fd));
 
             } catch (Exception e) {
@@ -101,3 +101,4 @@ public class StreamingClient {
 
     public void cancel() { if (activeCall != null) activeCall.cancel(); }
 }
+
