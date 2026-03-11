@@ -1,4 +1,4 @@
- plugins {
+plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
 }
@@ -13,13 +13,6 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [
-                    'prism4j.bundler.languages': 'javascript,python,java,kotlin,cpp,c,css,json,sql,typescript,go,swift,php,ruby,rust'
-                ]
-            }
-        }
     }
 
     buildTypes {
@@ -33,7 +26,6 @@ android {
 }
 
 configurations.all {
-    // Fix 3: duplicate JetBrains annotations pulled in by different deps
     resolutionStrategy {
         force 'org.jetbrains:annotations:23.0.0'
     }
@@ -59,7 +51,4 @@ dependencies {
     implementation 'io.noties.markwon:core:4.6.2'
     implementation 'io.noties.markwon:ext-strikethrough:4.6.2'
     implementation 'io.noties.markwon:ext-tables:4.6.2'
-    implementation 'io.noties.markwon:syntax-highlight:4.6.2'
-    implementation 'io.noties:prism4j:2.0.0'
-    annotationProcessor 'io.noties:prism4j-bundler:2.0.0'
 }
