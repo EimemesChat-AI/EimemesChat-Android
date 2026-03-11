@@ -1,4 +1,4 @@
-plugins {
+ plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
 }
@@ -63,4 +63,3 @@ dependencies {
     implementation 'io.noties:prism4j:2.0.0'
     annotationProcessor 'io.noties:prism4j-bundler:2.0.0'
 }
-
