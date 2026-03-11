@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.eimemes.chat.GrammarLocatorDef;
 import com.eimemes.chat.R;
 import com.eimemes.chat.models.Message;
 import io.noties.markwon.Markwon;
@@ -33,7 +32,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public ChatAdapter(List<Message> msgs, Context ctx) {
         this.msgs = msgs;
-        Prism4j prism4j = new Prism4j(new GrammarLocatorDef());
+        Prism4j prism4j = new Prism4j(new com.eimemes.chat.GrammarLocatorDef());
         this.markwon = Markwon.builder(ctx)
             .usePlugin(StrikethroughPlugin.create())
             .usePlugin(TablePlugin.create(ctx))
@@ -162,3 +161,4 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         TypingVH(View v) { super(v); }
     }
 }
+
