@@ -5,7 +5,7 @@ import io.noties.prism4j.annotations.PrismBundle;
 @PrismBundle(
     include = {
         "javascript", "python", "java", "kotlin", "cpp", "c",
-        "css", "markup", "json", "bash", "sql", "typescript",
+        "css", "json", "sql", "typescript",
         "go", "swift", "php", "ruby", "rust", "clike"
     },
     grammarLocatorClassName = ".GrammarLocatorDef"
@@ -13,3 +13,4 @@ import io.noties.prism4j.annotations.PrismBundle;
 public class PrismGrammarLocator {
     // Annotation processor generates GrammarLocatorDef.java at build time
 }
+
