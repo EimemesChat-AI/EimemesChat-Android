@@ -1,15 +1,8 @@
 package com.eimemes.chat;
 
-import io.noties.prism4j.annotations.PrismBundle;
-
-@PrismBundle(
-    include = {
-        "javascript", "python", "java", "kotlin", "c",
-        "css", "json", "sql", "go", "swift", "php", "ruby", "rust", "clike"
-    },
-    grammarLocatorClassName = "com.eimemes.chat.GrammarLocatorDef"
-)
+// Syntax highlighting removed — prism4j-bundler annotation processor
+// was incompatible with the CI build environment.
+// Markwon still renders code blocks with monospace font styling.
 public class PrismGrammarLocator {
-    // Annotation processor generates GrammarLocatorDef.java at build time
 }
 
