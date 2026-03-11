@@ -1,3 +1,4 @@
+
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
@@ -32,6 +33,14 @@ android {
     }
 }
 
+configurations.all {
+    // Fix 3: duplicate JetBrains annotations pulled in by different deps
+    resolutionStrategy {
+        force 'org.jetbrains:annotations:23.0.0'
+    }
+    exclude group: 'org.jetbrains', module: 'annotations-java5'
+}
+
 dependencies {
     // AndroidX
     implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -47,7 +56,7 @@ dependencies {
     // Networking
     implementation 'com.squareup.okhttp3:okhttp:4.11.0'
 
-    // Markdown rendering (same role as marked.js)
+    // Markdown rendering
     implementation 'io.noties.markwon:core:4.6.2'
     implementation 'io.noties.markwon:ext-strikethrough:4.6.2'
     implementation 'io.noties.markwon:ext-tables:4.6.2'
@@ -55,3 +64,4 @@ dependencies {
     implementation 'io.noties:prism4j:2.0.0'
     annotationProcessor 'io.noties:prism4j-bundler:2.0.0'
 }
+
