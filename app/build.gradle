@@ -1,4 +1,3 @@
-
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
@@ -17,7 +16,7 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [
-                    'prism4j.bundler.languages': 'javascript,python,java,kotlin,cpp,c,css,markup,json,bash,sql,typescript,go,swift,php,ruby,rust'
+                    'prism4j.bundler.languages': 'javascript,python,java,kotlin,cpp,c,css,json,sql,typescript,go,swift,php,ruby,rust'
                 ]
             }
         }
