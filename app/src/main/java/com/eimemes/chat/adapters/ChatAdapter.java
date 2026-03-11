@@ -14,9 +14,6 @@ import com.eimemes.chat.models.Message;
 import io.noties.markwon.Markwon;
 import io.noties.markwon.ext.strikethrough.StrikethroughPlugin;
 import io.noties.markwon.ext.tables.TablePlugin;
-import io.noties.markwon.syntax.Prism4jThemeDarkula;
-import io.noties.markwon.syntax.SyntaxHighlightPlugin;
-import io.noties.prism4j.Prism4j;
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -32,11 +29,9 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public ChatAdapter(List<Message> msgs, Context ctx) {
         this.msgs = msgs;
-        Prism4j prism4j = new Prism4j(new com.eimemes.chat.GrammarLocatorDef());
         this.markwon = Markwon.builder(ctx)
             .usePlugin(StrikethroughPlugin.create())
             .usePlugin(TablePlugin.create(ctx))
-            .usePlugin(SyntaxHighlightPlugin.create(prism4j, Prism4jThemeDarkula.create()))
             .build();
     }
 
